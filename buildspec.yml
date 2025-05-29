@@ -1,13 +1,14 @@
 # write buildspec file for AWS CodeBuild to build a docker image
 version: 0.2  
 phases:
-  install:
-    runtime-versions:
-      docker: 28
+  # install:
+  #   runtime-versions:
+  #     docker: 28
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+        aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
     commands:
       - echo Building the Docker image...
