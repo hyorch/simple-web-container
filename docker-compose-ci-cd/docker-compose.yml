@@ -1,0 +1,11 @@
+services:
+  web:
+    image: "webapp:${TAG:?error TAG is not set}"
+    build:
+      context: "."
+      dockerfile: "Dockerfile"
+      args:
+        VERSION: "${TAG}" # Ser version value to the Dockerfile
+
+    ports:
+      - "80:80"
